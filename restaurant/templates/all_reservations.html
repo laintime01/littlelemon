@@ -4,5 +4,13 @@
 
 {% block content %}
     <h2 class="text-center">All Reservations</h2>
-    <pre>{{ reservations_json }}</pre>
+    <div class="list-group">
+        {% for reservation in reservations %}
+            <div class="list-group-item">
+                <h5 class="mb-1">{{ reservation.name }}</h5>
+                <p class="mb-1">Date: {{ reservation.reservation_date }}</p>
+                <p class="mb-1">Time: {{ reservation.get_reservation_slot_display }}</p>
+            </div>
+        {% endfor %}
+    </div>
 {% endblock %}
