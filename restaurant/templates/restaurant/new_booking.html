@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>New Booking</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/styles.css' %}">
+    <script src="{% static 'js/form.js' %}" defer></script>
+</head>
+<body>
+    <h1>Make a reservation</h1>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Reserve</button>
+    </form>
+    <h2>Bookings For {{ form.reservation_date.value }}</h2>
+    <ul>
+        {% for booking in bookings %}
+            <li>{{ booking.name }} - {{ booking.reservation_time }}</li>
+        {% endfor %}
+    </ul>
+    <a href="{% url 'booking_list' %}">Back to Booking List</a>
+</body>
+</html>

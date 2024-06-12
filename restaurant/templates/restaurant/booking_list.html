@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Booking List</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/styles.css' %}">
+</head>
+<body>
+    <h1>All Reservations</h1>
+    <ul>
+        {% for booking in bookings %}
+            <li>{{ booking.name }} - {{ booking.reservation_date }} {{ booking.reservation_time }}</li>
+        {% endfor %}
+    </ul>
+    <a href="{% url 'new_booking' %}">New Booking</a>
+</body>
+</html>
