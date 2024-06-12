@@ -1,30 +1,8 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Home - Little Lemon</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
-</head>
-<body>
-    <header>
-        <h1>Little Lemon</h1>
-        <nav>
-            <a href="/">Home</a>
-            <a href="/about/">About</a>
-            <a href="/menu/">Menu</a>
-            <a href="/make_reservation/">Book</a>
-            <a href="/reservations/">Reservations</a>
-        </nav>
-    </header>
-    <main>
-        <div class="container">
-            <h2>Welcome to Little Lemon!</h2>
-            <p>Enjoy our delicious menu and make your reservations online.</p>
-        </div>
-    </main>
-    <footer>
-        <p>Copyright Little Lemon</p>
-    </footer>
-</body>
-</html>
+{% extends 'base.html' %}
+
+{% block title %}Home - Little Lemon{% endblock %}
+
+{% block content %}
+    <h2 class="text-center">Welcome to Little Lemon!</h2>
+    <p class="text-center">We are delighted to have you here. Enjoy our delicious menu and make your reservations online.</p>
+{% endblock %}
