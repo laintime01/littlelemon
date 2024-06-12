@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Make a Reservation - Little Lemon</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+    <header class="bg-dark text-white text-center py-3">
+        <div class="container">
+            <img src="{% static 'images/lemon-logo.png' %}" alt="Little Lemon Logo" class="logo">
+            <h1 class="d-inline-block align-middle">Little Lemon</h1>
+        </div>
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+            <div class="container-fluid">
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav mx-auto">
+                        <li class="nav-item">
+                            <a class="nav-link" href="/">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/about/">About</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/menu/">Menu</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/make_reservation/">Book</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/reservations/">Reservations</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+    <main class="container my-5">
+        <h2 class="text-center">Make a reservation</h2>
+        <form method="post" class="w-50 mx-auto bg-light p-4 rounded">
+            {% csrf_token %}
+            <div class="mb-3">
+                <label for="name" class="form-label">Name</label><br>
+                {{ form.name }}
+            </div>
+            <div class="mb-3">
+                <label for="reservation_date" class="form-label">Reservation Date</label><br>
+                {{ form.reservation_date }}
+            </div>
+            <div class="mb-3">
+                <label for="reservation_slot" class="form-label">Reservation Time</label><br>
+                {{ form.reservation_slot }}
+            </div>
+            <button type="submit" class="btn btn-dark w-100">Reserve</button>
+        </form>
+        <h3 class="text-center mt-5">Bookings For {{ form.initial.reservation_date }}</h3>
+        <ul class="list-group w-50 mx-auto">
+            {% for reservation in reservations %}
+                <li class="list-group-item">{{ reservation.name }} - {{ reservation.get_reservation_slot_display }}</li>
+            {% endfor %}
+        </ul>
+    </main>
+    <footer class="bg-light text-center py-3">
+        <p class="mb-0">Copyright Little Lemon</p>
+    </footer>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
