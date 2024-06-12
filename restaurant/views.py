@@ -26,10 +26,9 @@ def make_reservation(request):
                 form.add_error('reservation_slot', 'This time slot is already booked.')
             else:
                 form.save()
-                return redirect('make_reservation')
+                return redirect('make_reservation')  # Redirect to clear form and prevent re-submission
     else:
-        # Use current date as default reservation date
-        initial_data = {'reservation_date': timezone.now().date()}
-        form = BookingForm(initial=initial_data)
-        reservations = Booking.objects.filter(reservation_date=initial_data['reservation_date'])
+        form = BookingForm()
+    
+    reservations = Booking.objects.filter(reservation_date=timezone.now().date())
     return render(request, 'make_reservation.html', {'form': form, 'reservations': reservations})
